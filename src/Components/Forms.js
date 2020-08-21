@@ -1,9 +1,6 @@
 import React from "react";
-
+import * as yup from "yup";
 //validation ~ yup schema
-
-
-
 
 export default function Forms(){
     //state for user data {id:"", first_name:"",email:"",username:"",password:""}
@@ -20,7 +17,7 @@ export default function Forms(){
         postcard --> album <--> edit +-> postcard +-> profile
     */
     return (
-        //link sign-in, sign-up, album -----coming from ismails website? just match routes to links /signin /signup
+        {//link sign-in, sign-up, album -----coming from ismails website? just match routes to links /signin /signup
         //routes for sign in sign up
         /**
          * form
@@ -37,6 +34,6 @@ export default function Forms(){
          * username:
          * password:
          * SUBMIT
-        */
-    )
+        */}
+    );
 };
