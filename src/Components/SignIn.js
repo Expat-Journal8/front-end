@@ -3,7 +3,6 @@ import * as yup from "yup";
 import axios from "axios";
 import "../sass/SignIn.scss";
 
-
     const loginSchema = yup.object().shape({
             username: yup
                 .string()
@@ -12,7 +11,7 @@ import "../sass/SignIn.scss";
             password: yup
                 .string()
                 .min(10, "Must have ${min} characters minimum.")
-                .matches( (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/), "must contain uppercase letter, number, special character.")
+                .matches( (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{10,}$/), "must contain uppercase letter, number, lowercase lettera.")
                 .required("password is required.")
     });
 
@@ -72,8 +71,8 @@ const Forms = (props) => {
                 setReplyState(reply.data) 
             })
             .catch(error=> console.log(error));
-            setUser({username:"", password:""});
         };
+        console.log(replyState);
 
    return (
         <div className="loginWrap">
