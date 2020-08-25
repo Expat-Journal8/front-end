@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import "./sass/Index.scss"
+import { BrowserRouter as Router } from "react-router-dom";
+import "./sass/Index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
+  <Router>
     <App />
+  </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
