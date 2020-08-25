@@ -1,0 +1,1 @@
+//get request to /api/users/:id/stories -- will return posts created by id specific users
