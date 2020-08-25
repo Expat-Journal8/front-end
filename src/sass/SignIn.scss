@@ -1,8 +1,10 @@
-@import "./Layout";
-@import "./GlobalVars";
 
 .loginWrap{
-    margin: 10rem auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin:0 12ch;
     background: $Blue;
     padding:4rem;
     border:4px $Yellow solid;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
-import "../sass/SignIn.scss";
 
     const loginSchema = yup.object().shape({
             username: yup
@@ -18,14 +17,15 @@ import "../sass/SignIn.scss";
 
 const Forms = (props) => {
    //state for user data {id:"", first_name:"",email:"",username:"",password:""}
-    const [ user, setUser ] = useState({ username:"", password:"" }); 
+    const [ user, setUser ] = useState({ first_name:"", email:"", username:"", password:"" }); 
     //validation ~ state for err {id:"", first_name:"",email:"",username:"",password:""}
-    const [ err, setErr ] = useState({ username:"", password:"" });
+    const [ err, setErr ] = useState({first_name:"", email:"", username:"", password:"" });
     //disable that button unless the proper shape is being used as input
     const [ buttonDisabled, setButtonDisabled ] = useState(true);
     //state for axios requests
     const [ replyState, setReplyState ] = useState([]);
     const [postTo] = useState("https://reqres.in/api/users");
+
 
     useEffect(
         ()=>{
@@ -79,7 +79,7 @@ const Forms = (props) => {
             <form onSubmit={ handleSubmit }>
                 <div className="name">
                     <label htmlFor="username">Username: </label>
-                    <input id="username" name="username" value={user.username} placeholder="not case sensitive." type="text" onChange={handleChange}/>
+                    <input id="username" name="username" value={uuseState({ first_name:"", email:"", username:"", password:"" });ser.username} placeholder="not case sensitive." type="text" onChange={handleChange}/>
                     { err.username.length > 0 ? <span className="errd">{err.username}</span> : null }
                 </div>
                 <div className="password">
