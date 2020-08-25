@@ -1,5 +1,4 @@
 import React from "react";
-import { date } from "yup";
 import {Link} from "react-router-dom";
 
 const Profile =()=>{
@@ -22,7 +21,12 @@ const Profile =()=>{
                     <li><span>date</span><p>information</p></li>
                     <li><span>date</span><p>information</p></li>
                 </ul>
-            <Link to="/Photos">more...</Link>
+            <Link to="/Photos"><button>more...</button></Link>
+            </div>
+            <div className="stories">
+                <ul>
+
+                </ul>
             </div>
         </div>
 
