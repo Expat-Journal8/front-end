@@ -1,0 +1,11 @@
+.navigation{
+    display: flex;
+    font-family: $Titles;
+    justify-content: space-evenly;
+    align-items: center;
+    background:$Background;
+    color: $Black;
+    a{
+        text-decoration:none;
+    }
+}
