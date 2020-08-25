@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, Switch, Route } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
@@ -10,7 +11,7 @@ import axios from "axios";
             password: yup
                 .string()
                 .min(10, "Must have ${min} characters minimum.")
-                .matches( (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{10,}$/), "must contain uppercase letter, number, lowercase lettera.")
+                .matches( (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{10,}$/), "must contain uppercase letter, number, lowercase letters.")
                 .required("password is required.")
     });
 
@@ -79,7 +80,7 @@ const Forms = (props) => {
             <form onSubmit={ handleSubmit }>
                 <div className="name">
                     <label htmlFor="username">Username: </label>
-                    <input id="username" name="username" value={uuseState({ first_name:"", email:"", username:"", password:"" });ser.username} placeholder="not case sensitive." type="text" onChange={handleChange}/>
+                    <input id="username" name="username" value={user.username} placeholder="not case sensitive." type="text" onChange={handleChange}/>
                     { err.username.length > 0 ? <span className="errd">{err.username}</span> : null }
                 </div>
                 <div className="password">
