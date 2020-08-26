@@ -1,3 +1,17 @@
+.NavII{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    li{
+        list-style: none;
+        button{
+            background: $Blue;
+            border: $Blue solid 1px;
+            color: $Yellow;
+            width:16ch;
+        }
+    }
+}
 
 .profileWrap{
     display:flex;
