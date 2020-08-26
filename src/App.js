@@ -7,6 +7,7 @@ import NavII from "./Components/NavII";
 import EditStories from "./Components/Stories";
 import Postcard from "./Components/Postcard";
 import Photo from "./Components/Photo";
+import Globe from "./Components/GlobeBanner";
 import { Switch, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -21,7 +22,7 @@ function App() {
         <Route path="/Profile"><NavII/><Profile/></Route>
         <Route path="/SignIn"><Nav/><SignIn/></Route>
         <Route path="/SignUp"><Nav/><SignUp/> </Route>
-        <Route path="/"><Nav/>Link to Ismails website please...</Route>
+        <Route path="/"><Nav/><Globe/></Route>
       </Switch>
     </div>
   );
