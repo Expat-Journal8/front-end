@@ -1,37 +1,35 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import map from "./assets/world.png"
 
 
-const Stories =(props)=>{
-    return(
-        <>
-            <h3>title</h3>
-            <div></div>
-        </>
-    )
-};
-
 const EditStories =()=>{
-    const  [story, setStory ] = useState( { trip:"" , date:"" } );
-    const [ storys,setStorys ] = useState(story);
-
+    const  [story, setStory ] = useState( { title:"",trip:"" , date:"" } );
+    const [entry, setEntry] = useState( [{ title:"",trip:"" , date:"" }] );
     const handleChange = e => {
-        const entry = {
+        const tale = {
             ...story,
             [e.target.name]: 
             e.target.value};
-            setStory(entry);
+            setStory(tale);
     };
 
     const handleSubmit = e => {
         e.preventDefault();
-        setStorys(story);
+        setEntry([...entry, story]);
+        setStory({title:"", trip:"", date:""});    
     };
-    console.log(storys);
+    
+    useEffect( ()=>{
+        console.log("succesfully journaled:",entry)
+    },[entry] );
 
     return(
         <div className="storiesWrapper">
             <form onSubmit={ handleSubmit }>
+                <div className="storyTitle">
+                    <label htmlFor="title">Title: </label>
+                    <input type="text" id="title" name="title" value={story.title} onChange={handleChange}/>
+                </div>
                 <div className="story">
                     <label htmlFor="editStory">Tell your story: </label>
                     <textarea name="textarea" id="editStory" name="trip" value={story.trip} onChange={handleChange}/>
@@ -42,12 +40,9 @@ const EditStories =()=>{
                 </div>
                 <button>Add Story</button>
             </form>
-            <div className="stories">
-                {storys.map}
-                
+                       
             </div>
-        </div>
-    )
+        )
 };
 
 export default EditStories;
