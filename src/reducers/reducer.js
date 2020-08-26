@@ -1,4 +1,4 @@
-import { SET_ERROR, REGISTER_USER, REGISTER_USER_SUCCESS } from "../actions/index";
+import { SET_ERROR, REGISTER_USER, SUCCESS, LOADING, LOGIN_SUCCESS } from "../actions/index";
 
 const initialState = { 
     users: [], 
@@ -14,18 +14,24 @@ export const reducer = (state = initialState, action) => {
         case SET_ERROR:
             return {
                 ...state,
-                isFetchingData: false,
+                isLoading: false,
                 error: action.payload
             }
-        case REGISTER_USER:
+        case SUCCESS:
             return {
                 ...state, 
-                user: action.payload
+                isLoading: false
             }
-        case REGISTER_USER_SUCCESS:
+        case LOADING: 
+            return {
+                ...state,
+                isLoading: true
+            }
+        case LOGIN_SUCCESS: 
             return {
                 ...state, 
-                registerSuccessMessage: action.payload
+                user: action.payload,
+                isLoading: false
             }
         default:
             return state

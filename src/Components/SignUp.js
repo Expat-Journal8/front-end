@@ -27,7 +27,7 @@ const joinSchema = yup.object().shape({
                 .required("a user needs a nickname."),
     password: yup
                 .string()
-                .min(10, "Must have ${min} characters minimum.")
+                .min(10, 'Must have ${min} characters minimum.')
                 .matches( (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{10,}$/), "must contain uppercase letter, number, lowercase letters.")
                 .required("password is required.")
 });
@@ -64,18 +64,21 @@ const SignUp = () =>{
             e.persist();
             const member = {
                 ...userSUP,
-                [e.target.name]: e.target.value };
+                [e.target.name]: e.target.value 
+            }
                 validateChange(e);
                 setUserSUP(member);
         };
         
+        useEffect(() => {
+            console.log(userSUP);
+        }, [userSUP])
 
     const handleSubmit =e=>{
         e.preventDefault();
-        axios
-        .post('https://aa-expat.herokuapp.com/api/auth/register', userSUP)
-        .then( reply => { setReplyState(reply.data) } )
-        .catch( error => console.log(error) );
+        axios.post('https://aa-expat.herokuapp.com/api/auth/register', userSUP)
+            .then( reply => console.log(reply) )
+            .catch( error => console.log(error) );
     };
 
 

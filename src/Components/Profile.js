@@ -1,8 +1,21 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { date } from "yup";
 import {Link} from "react-router-dom";
+import {axiosWithAuth} from '../api/axiosWithAuth';
 
 const Profile =()=>{
+    const [userData, setUserData] = useState();
+
+    useEffect(() => {
+        axiosWithAuth().get(`https://aa-expat.herokuapp.com/api/users/:id`)
+                .then(response => {
+                    console.log(response);
+                    setUserData(response.data);
+                })
+                .catch(error => {
+                    console.log(error.message);
+                })
+    }, [])
     
     return(
         <div className="profileWrap">
