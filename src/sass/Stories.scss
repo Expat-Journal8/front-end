@@ -1,0 +1,11 @@
+.storiesWrapper{
+    width:35ch;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: flex-end;
+    .story{
+        display:flex;
+        flex-direction:column;
+    }
+}
