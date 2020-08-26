@@ -4,5 +4,7 @@
 			"path": "../.."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"terminalAllInOne.terminalTheme": "Gruvbox Dark Hard"
+	}
 }
