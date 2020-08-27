@@ -54,7 +54,7 @@ export const login = credentials => dispatch => {
 
 export const fetchUsers = () => dispatch => {
     dispatch({type: LOADING})
-    axiosWithAuth().get('https://aa-expat.herokuapp.com/api/users')
+    axiosWithAuth().get('/api/users')
         .then(response => {
             console.log(response);
             dispatch({type: FETCH_USERS_SUCCESS, payload: response.data})
@@ -65,6 +65,7 @@ export const fetchUsers = () => dispatch => {
 }
 
 //how and from where would I be able to grab ID?
+        //useParams
 
 export const fetchUserData = () => dispatch => {
     dispatch({type: LOADING})
