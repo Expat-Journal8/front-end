@@ -2,6 +2,7 @@
 import axios from 'axios';
 import {axiosWithAuth} from '../api/axiosWithAuth';
 import history from '../api/history';
+import {useParams} from 'react-router-dom';
 //import { reducer } from '../reducers/reducer';
 
 export const SET_ERROR = "SET_ERROR";
@@ -69,7 +70,7 @@ export const fetchUsers = () => dispatch => {
 
 export const fetchUserData = () => dispatch => {
     dispatch({type: LOADING})
-    axiosWithAuth().get(`https://aa-expat.herokuapp.com/api/users/:id`)
+    axiosWithAuth().get(`/api/users/:id`)
         .then(response => {
             console.log(response);
             dispatch({type: FETCH_USER_DATA_SUCCESS, payload: response.data})
@@ -81,7 +82,7 @@ export const fetchUserData = () => dispatch => {
 
 export const fetchStories = () => dispatch => {
     dispatch({type: LOADING});
-    axiosWithAuth().get('https://aa-expat.herokuapp.com/api/users/:id/stories')
+    axiosWithAuth().get('/api/users/:id/stories')
         .then(response => {
             console.log(response);
             dispatch({type: FETCH_STORIES_SUCCESS, payload: response.data})
