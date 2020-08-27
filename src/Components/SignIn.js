@@ -3,40 +3,88 @@ import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {login, registerUser} from '../actions/index';
 import {connect} from 'react-redux';
+import * as yup from 'yup';
+import Nav from '../Components/Nav';
 
 const SignIn = props => {
     const location = useLocation();
-    const [user, setUser] = useState({
-        first_name: '',
-        email: '',
-        username: '',
-        password: ''
-    });
+    const [user, setUser] = useState({username: '', password: ''});
+    const [buttonDisabled, setButtonDisabled] = useState(true);
+    const [err, setErr] = useState({username: '', password: ''});
+    
 
-    const handleChanges = e => {
-        setUser({...user, [e.target.name]: e.target.value})
-    }
+
+    // const handleChanges = e => {
+    //     setUser({...user, [e.target.name]: e.target.value})
+    // }
 
     const onSubmit = e => {
         e.preventDefault();
-        //location.pathname == '/SignIn' ? //login action : register action
         location.pathname === '/SignIn' ? props.login(user) : props.registerUser(user);
     }
 
-    useEffect(() => {
-        console.log(user);
-    }, [user])
+    const loginSchema = yup.object().shape({
+        username: yup
+            .string()
+            .min(3)
+            .required("A user must have a nickname."),
+        password: yup
+            .string()
+            .min(10, "Must have ${min} characters minimum.")
+            .matches( (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{10,}$/), "must contain uppercase letter, number, lowercase letters.")
+            .required("password is required.")
+    });
+
+    const validateChange = e => {
+        yup
+            .reach(loginSchema, e.target.name)
+            .validate(e.target.value)
+            .then( valid => { 
+                setErr({
+                     ...err,
+                      [e.target.name]: "" 
+                    });
+                })
+            .catch( error =>{ 
+                setErr({ 
+                    ...err,
+                     [e.target.name]: error.errors[0] 
+                    });
+                })
+    };
+
+    const handleChange = e => {
+        e.persist();
+        setUser({...user, [e.target.name]: e.target.value});
+        validateChange(e);
+    }
+
+    useEffect(
+        ()=>{
+            loginSchema.isValid(user).then(valid =>{
+                setButtonDisabled(!valid);
+            });
+        }, [user]
+    );
 
     return (
         <>
-        {location.pathname === '/SignUp' ? 
-            <div className='signUpForm'><h1>Sign Up here!</h1></div> :
-            <div className='signInForm'><h1>Sign In here!</h1></div>
-            }
-            {/* input username and password here */}
-            <input name='username' type='text' onChange={handleChanges} placeholder='username' />
-            <input name='password' type='text' onChange={handleChanges} placeholder='password' />
-            <button onClick={onSubmit}>{location.pathname === '/SignIn' ? 'Sign In!' : 'Sign Up!'}</button>
+            <div className='signInUpForm'>
+                {location.pathname === '/SignUp' ? 
+                    <div className='signUpForm'><h1>Sign Up here!</h1></div> :
+                    <div className='signInForm'><h1>Sign In here!</h1></div>
+                }
+                {/* input username and password here */}
+                <div className='userName'>
+                    <input name='username' type='text' onChange={handleChange} placeholder='username' />
+                    { err.username.length > 0 ? <span className="errd">{err.username}</span> : null }
+                </div>
+                <div className='password'>
+                    <input name='password' type='text' onChange={handleChange} placeholder='password' />
+                    {err.password.length > 0 ? <span className="errd">{err.password}</span> : null }
+                </div>
+                <button onClick={onSubmit} disabled={buttonDisabled}>{location.pathname === '/SignIn' ? 'Sign In!' : 'Sign Up!'}</button>
+            </div>
         </>
     )
 }

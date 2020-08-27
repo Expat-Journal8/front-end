@@ -1,11 +1,17 @@
-.App{
+
+
+.App {
     width:100%;
-    nav{
+    nav {
         display:flex;
         justify-content: space-evenly;
         align-items: center;
         height:5ch;
         background: $Blue;
         width:100%;
+        }
     }
-    }
+
+.story {
+    border: 1px solid yellowgreen;
+}

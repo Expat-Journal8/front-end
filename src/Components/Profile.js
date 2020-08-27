@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import {axiosWithAuth} from '../api/axiosWithAuth';
 import {fetchUserData} from '../actions/index';
+import UserStories from '../Components/UserStories';
 
 const Profile = props =>{
     const [userData, setUserData] = useState('testing');
@@ -29,8 +30,7 @@ const Profile = props =>{
         history.push(path);
     }
     
-    // so when the window reloads (in login action) the state disappears
-        // I have this fetchUserData to work around that, but it says I am unauthorized 
+    
 
     return(
         <div className="profileWrap">
@@ -43,14 +43,9 @@ const Profile = props =>{
                 <h5>password: {userData.password}</h5>
                 <button onClick={takeToEditPage}>edit</button>
             </div>
-            <div className="photos">
-            <h3>recent photos</h3>
-                <ul>
-                    <li><span>date</span><p>information</p></li>
-                    <li><span>date</span><p>information</p></li>
-                    <li><span>date</span><p>information</p></li>
-                </ul>
-            <Link to="/Photos">more...</Link>
+            <div className='storiesContainer'>
+                <h3>recent photos</h3>
+                <UserStories />
             </div>
         </div>
 

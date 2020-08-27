@@ -1,4 +1,4 @@
-//import React, {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios';
 import {axiosWithAuth} from '../api/axiosWithAuth';
 import history from '../api/history';
@@ -70,7 +70,8 @@ export const fetchUsers = () => dispatch => {
 
 export const fetchUserData = () => dispatch => {
     dispatch({type: LOADING})
-    axiosWithAuth().get(`/api/users/:id`)
+    const params = useParams();
+    axiosWithAuth().get(`/api/users/${params.id}`)
         .then(response => {
             console.log(response);
             dispatch({type: FETCH_USER_DATA_SUCCESS, payload: response.data})
@@ -89,6 +90,17 @@ export const fetchStories = () => dispatch => {
         })
         .catch(error => {
             console.log(error.message);
+        })
+}
+
+export const editUserData = data => dispatch => {
+    const params = useParams();
+    axiosWithAuth().put(`api/users/${params.id}/`, data)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
         })
 }
 

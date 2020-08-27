@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
+import {useHistory} from 'react-router-dom';
 
 const joinSchema = yup.object().shape({
     firstName: yup
@@ -33,12 +34,12 @@ const joinSchema = yup.object().shape({
 });
 
 const SignUp = () =>{
-    
     const [ userSUP, setUserSUP ] = useState({ firstName:"", lastName: '', gender: '', age: '', email:"", username:"", password:"" });
     const [ errors, setErrors ] = useState({ firstName:"", lastName: '', gender: '', age: '', email:"", username:"", password:"" });
     const [ buttonDisabled, setButtonDisabled ] = useState(true);
     //const [ replyState, setReplyState ] = useState([]);
     //const [postTo] = useState("https://reqres.in/api/users");
+    const history = useHistory();
 
     useEffect( ()=>{ joinSchema.isValid(userSUP).then( valid => {setButtonDisabled(!valid);} ) },[userSUP] );
 
@@ -77,7 +78,10 @@ const SignUp = () =>{
     const handleSubmit =e=>{
         e.preventDefault();
         axios.post('https://aa-expat.herokuapp.com/api/auth/register', userSUP)
-            .then( reply => console.log(reply) )
+            .then( reply => {
+                console.log(reply);
+                history.push("/SignIn");
+            })
             .catch( error => console.log(error) );
     };
 
@@ -124,7 +128,7 @@ const SignUp = () =>{
                     <input type="password" id="password" name="password" value={userSUP.password} onChange={handleChange} placeholder="secret pass phrase"/>
                     { errors.password.length > 0 ? <span className="errd">{errors.password}</span> : null }
                 </div>
-                <button disabled={buttonDisabled}>{!buttonDisabled === true ? "Submit" : "Invalid"}</button>
+                <button disabled={buttonDisabled}>Submit</button>
             </form>
         </div>
     )

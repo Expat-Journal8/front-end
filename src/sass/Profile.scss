@@ -1,0 +1,45 @@
+.NavII{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    li{
+        list-style: none;
+        button{
+            background: $Blue;
+            border: $Blue solid 1px;
+            color: $Yellow;
+            width:16ch;
+        }
+    }
+}
+
+.profileWrap{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: start;
+    margin: 5px 20%;
+    font-family: $Titles;
+    header{
+        border-bottom: gray dotted 2px;
+    }
+    .personalInfo{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: gray dotted 1px;
+    }
+    .photos{
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom:gray dotted 1px;
+        li{
+            margin:2ch;
+        }
+        button{
+        align-self:end;
+        }
+
+    }
+}

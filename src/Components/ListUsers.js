@@ -2,12 +2,19 @@ import React, {useEffect, useState} from 'react';
 //import {axiosWithAuth} from '../api/axiosWithAuth';
 //import axios from 'axios';
 import {connect} from 'react-redux';
+import {useParams, Link} from 'react-router-dom';
 import {fetchUsers} from '../actions/index';
 
 //get request to /api/users -- will return array of users
 
 const ListUsers = props =>{
-    //const [data, setData] = useState([{username:'hello world!'}]);
+    const [data, setData] = useState([{username:'hello world!'}]);
+    const params = useParams();
+    const path = `/Profile/${params.id}`
+
+    // function myFunction(id) {
+    //    alert(item.id);
+    // }
 
     useEffect(() => {
         props.fetchUsers();
@@ -15,9 +22,13 @@ const ListUsers = props =>{
 
     return(
         <div>
-            {/* {data.map(item=>{return(<div className="UsersCard">Username: {item.username} <br /> Age: {item.age} <br /> Email: {item.email} </div>)})} */}
-            <h1> I am here! </h1>
-
+            {props.users.map(item=>{return(
+                <div className='usersListCard'>
+                    <Link to={`/Profile/${item.id}`}>
+                        Username: {item.username} <br /> Name: {item.firstName} <br /> ID: {item.id} <br /> Email: {item.email}
+                    </Link>
+                </div>
+                )})}
         </div>
     )
 }
