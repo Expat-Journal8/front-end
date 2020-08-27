@@ -37,8 +37,8 @@ const SignUp = () =>{
     const [ userSUP, setUserSUP ] = useState({ firstName:"", lastName: '', gender: '', age: '', email:"", username:"", password:"" });
     const [ errors, setErrors ] = useState({ firstName:"", lastName: '', gender: '', age: '', email:"", username:"", password:"" });
     const [ buttonDisabled, setButtonDisabled ] = useState(true);
-    const [ replyState, setReplyState ] = useState([]);
-    const [postTo] = useState("https://reqres.in/api/users");
+    //const [ replyState, setReplyState ] = useState([]);
+    //const [postTo] = useState("https://reqres.in/api/users");
 
     useEffect( ()=>{ joinSchema.isValid(userSUP).then( valid => {setButtonDisabled(!valid);} ) },[userSUP] );
 

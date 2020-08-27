@@ -5,8 +5,8 @@ import {axiosWithAuth} from '../api/axiosWithAuth';
 
 //should i just make a form with their info autofilled that they can edit?
 
-const EditUser = () => {
-    axiosWithAuth().get('https://aa-expat.herokuapp.com/api/users/:id')
+const EditUser = data => {
+    axiosWithAuth().put('https://aa-expat.herokuapp.com/api/users/:id', data)
                 .then(response => {
                     console.log(response);
                 })

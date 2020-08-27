@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from './api/PrivateRoute';
 import SignIn from './Components/SignIn';
 import SignUp from "./Components/SignUp";
 import Profile from './Components/Profile';
+import Stories from './Components/Stories';
 import Nav from "./Components/Nav";
 import ListUsers from './Components/ListUsers';
 
@@ -18,6 +19,7 @@ function App() {
           <Route exact path='/' />
           <PrivateRoute path='/UsersList' component={ListUsers} />
           <PrivateRoute path='/Profile/:id' component={Profile} />
+          <PrivateRoute path='/Stories' component={Stories} />
         </Switch>
       </Router>
     </div>

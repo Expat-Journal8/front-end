@@ -1,12 +1,16 @@
+//import React, {useEffect} from 'react';
 import axios from 'axios';
 import {axiosWithAuth} from '../api/axiosWithAuth';
 import history from '../api/history';
+//import { reducer } from '../reducers/reducer';
 
 export const SET_ERROR = "SET_ERROR";
-export const REGISTER_USER = "REGISTER_USER";
 export const SUCCESS = "SUCCESS";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOADING = "LOADING";
+export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+export const FETCH_USER_DATA_SUCCESS = "FETCH_USER_DATA_SUCCESS";
+export const FETCH_STORIES_SUCCESS = "FETCH_STORIES_SUCCESS";
 
 // export const getData = () => dispatch => {
 //     dispatch({ type: FETCH_USER_DATA });
@@ -26,7 +30,6 @@ export const registerUser = userData => dispatch => {
             // dispatch({type: REGISTER_USER_SUCCESS, payload: response.data})
             // set user for successful login with auth token
             // go to history -- see signIn component
-            // userData is being received from the sign up form, correct?
             console.log(response);
         })
         .catch(error => console.log(error.message))
@@ -43,9 +46,48 @@ export const login = credentials => dispatch => {
         // props.history.push('/Profile/:id') then get user id with useparams
         dispatch({type: LOGIN_SUCCESS, payload: res.data.user});
         history.push(`/Profile/${res.data.user.id}`)
-        window.location.reload();
+        //window.location.reload();
       })
       .catch(error => console.log(error))
+}
+
+
+export const fetchUsers = () => dispatch => {
+    dispatch({type: LOADING})
+    axiosWithAuth().get('https://aa-expat.herokuapp.com/api/users')
+        .then(response => {
+            console.log(response);
+            dispatch({type: FETCH_USERS_SUCCESS, payload: response.data})
+        })
+        .catch(err=>{
+            console.log(err);
+        });
+}
+
+//how and from where would I be able to grab ID?
+
+export const fetchUserData = () => dispatch => {
+    dispatch({type: LOADING})
+    axiosWithAuth().get(`https://aa-expat.herokuapp.com/api/users/:id`)
+        .then(response => {
+            console.log(response);
+            dispatch({type: FETCH_USER_DATA_SUCCESS, payload: response.data})
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+}
+
+export const fetchStories = () => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().get('https://aa-expat.herokuapp.com/api/users/:id/stories')
+        .then(response => {
+            console.log(response);
+            dispatch({type: FETCH_STORIES_SUCCESS, payload: response.data})
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
 }
 
 //const updateUserProfile -- put request to /api/users/:id

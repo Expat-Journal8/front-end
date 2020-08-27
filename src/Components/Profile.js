@@ -1,22 +1,20 @@
 import React, {useState, useEffect} from "react";
-import { date } from "yup";
+//import { date } from "yup";
 import {Link} from "react-router-dom";
-import {axiosWithAuth} from '../api/axiosWithAuth';
+import {connect} from 'react-redux';
+//import {axiosWithAuth} from '../api/axiosWithAuth';
+import {fetchUserData} from '../actions/index';
 
-const Profile =()=>{
+const Profile = props =>{
     const [userData, setUserData] = useState();
 
     useEffect(() => {
-        axiosWithAuth().get(`https://aa-expat.herokuapp.com/api/users/:id`)
-                .then(response => {
-                    console.log(response);
-                    setUserData(response.data);
-                })
-                .catch(error => {
-                    console.log(error.message);
-                })
+        props.fetchUserData();
     }, [])
     
+    // so when the window reloads (in login action) the state disappears
+        // I have this fetchUserData to work around that, but it says I am unauthorized 
+
     return(
         <div className="profileWrap">
             <header>
@@ -42,4 +40,15 @@ const Profile =()=>{
     )
 };
 
-export default Profile;
+const mapStateToProps = (state) => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {fetchUserData})(Profile);
