@@ -12,6 +12,122 @@
         }
     }
 
-.story {
-    border: 1px solid yellowgreen;
+.container {
+    text-align: center;
+
+    .storiesContainer {
+        margin-top: 10%;
+    
+        .story {
+            border: 1px solid yellowgreen;
+        }
+    }
+    
+    .editStoryButton {
+        margin: 3% auto;
+        border: none;
+    }
+    .editStoryButton:hover {
+        background-color: yellowgreen;
+    }
+
+    .deleteStoryButton {
+        border: none;
+    }
+    .deleteStoryButton:hover {
+        background-color: maroon;
+    }
+}
+
+.storiesBodyContainer {
+    margin-top: 10%;
+
+    .addStoryButtonContainer {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 2%;
+        margin-bottom: 3%;
+    }
+
+    .storiesContainer {
+    
+        .story {
+            border: 1px solid yellowgreen;
+        }
+    }
+}
+
+
+.storyContainer {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.usersListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+
+    .usersListCard {
+        border-bottom: 1px solid black;
+        width: 45%;
+        text-decoration: none;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+
+        .link {
+            text-decoration: none;
+        }
+    }
+}
+
+.editProfileButton {
+    border: none;
+    background-color: white;
+    color: darkorange;
+    width: 100px;
+}
+.editProfileButton:hover {
+    background-color: black;
+}
+
+.editUserForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    height: 300px;
+
+    .editInput {
+        border-bottom: black;
+        background-color: goldenrod;
+        margin-bottom: 5px;
+    }
+
+    .submitButton {
+        margin-top: 5px;
+    }
+}
+
+.deleteProfile {
+    .deleteProfileButton {
+        border: none;
+        background-color: white;
+        float: right;
+        margin-right: 5%;
+    }
+    .deleteProfileButton:hover {
+        background-color: red;
+    }
+}
+
+.storiesWrapper {
+    margin: 10% auto;
 }

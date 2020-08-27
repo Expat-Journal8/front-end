@@ -16,7 +16,6 @@ const Nav =()=> {
             : 
                 <nav className="NavII">
                     <img src={logo} alt=""/>
-                    <h1>Welcome [Username]</h1>
                     <ul>
                         <li>
                         <Link to="/Stories"><button>Stories</button> </Link>

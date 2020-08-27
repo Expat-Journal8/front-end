@@ -9,7 +9,9 @@ import Nav from "./Components/Nav";
 import ListUsers from './Components/ListUsers';
 import EditUser from './Components/EditUser';
 import EditStories from './Components/EditStories';
-import UserStories from './Components/UserStories.js';
+import UserStories from './Components/UserStories';
+import Story from './Components/Story';
+import AddStory from './Components/AddStory';
 import './sass/Index.scss';
 
 function App() {
@@ -21,12 +23,14 @@ function App() {
           <Route path='/SignIn' component={SignIn} />
           <Route path='/SignUp' component={SignUp} />
           <Route exact path='/' />
-          <PrivateRoute path='/UsersList' component={ListUsers} />
+          <PrivateRoute exact path='/UsersList' component={ListUsers} />
           <PrivateRoute exact path='/Profile/:id' component={Profile} />
-          <PrivateRoute path='/Profile/:id/editProfile' component={EditUser} />
+          <PrivateRoute exact path='/Profile/:id/editProfile' component={EditUser} />
           <PrivateRoute exact path='/Stories' component={Stories} />
-          <PrivateRoute path='/users/:id/stories' component={UserStories} />
-          <PrivateRoute path='/users/:id/stories/editStory' component={EditStories} />
+          <PrivateRoute exact path='/users/:id/stories' component={UserStories} />
+          <PrivateRoute exact path='/Story/:id/editStory' component={EditStories} />
+          <PrivateRoute exact path='/Story/:id' component={Story} />
+          <PrivateRoute exact path='/Stories/addStory' component={AddStory} />
         </Switch>
       </Router>
     </div>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import {useHistory} from 'react-router-dom';
+import {registerUser} from '../actions/index';
+import {connect} from 'react-redux';
 
 const joinSchema = yup.object().shape({
     firstName: yup
@@ -33,7 +35,7 @@ const joinSchema = yup.object().shape({
                 .required("password is required.")
 });
 
-const SignUp = () =>{
+const SignUp = props =>{
     const [ userSUP, setUserSUP ] = useState({ firstName:"", lastName: '', gender: '', age: '', email:"", username:"", password:"" });
     const [ errors, setErrors ] = useState({ firstName:"", lastName: '', gender: '', age: '', email:"", username:"", password:"" });
     const [ buttonDisabled, setButtonDisabled ] = useState(true);
@@ -77,12 +79,7 @@ const SignUp = () =>{
 
     const handleSubmit =e=>{
         e.preventDefault();
-        axios.post('https://aa-expat.herokuapp.com/api/auth/register', userSUP)
-            .then( reply => {
-                console.log(reply);
-                history.push("/SignIn");
-            })
-            .catch( error => console.log(error) );
+        props.registerUser(userSUP);
     };
 
 
@@ -134,4 +131,15 @@ const SignUp = () =>{
     )
 }    
 
-export default SignUp;
+const mapStateToProps = state => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {registerUser})(SignUp);

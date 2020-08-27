@@ -21,10 +21,10 @@ const ListUsers = props =>{
     }, [])
 
     return(
-        <div>
+        <div className='usersListContainer'>
             {props.users.map(item=>{return(
                 <div className='usersListCard'>
-                    <Link to={`/Profile/${item.id}`}>
+                    <Link className='link' to={`/Profile/${item.id}`}>
                         Username: {item.username} <br /> Name: {item.firstName} <br /> ID: {item.id} <br /> Email: {item.email}
                     </Link>
                 </div>

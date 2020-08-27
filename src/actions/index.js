@@ -30,8 +30,9 @@ export const registerUser = userData => dispatch => {
         .then(response => {
             // dispatch({type: REGISTER_USER_SUCCESS, payload: response.data})
             // set user for successful login with auth token
-            // go to history -- see signIn component
             console.log(response);
+            history.push('/SignIn')
+            window.location.reload();
         })
         .catch(error => console.log(error.message))
 }
@@ -47,7 +48,7 @@ export const login = credentials => dispatch => {
         // props.history.push('/Profile/:id') then get user id with useparams
         dispatch({type: LOGIN_SUCCESS, payload: res.data.user});
         history.push(`/Profile/${res.data.user.id}`)
-        //window.location.reload();
+        window.location.reload();
       })
       .catch(error => console.log(error))
 }

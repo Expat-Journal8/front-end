@@ -38,13 +38,13 @@ const Profile = props =>{
                 <h1>WELCOME {userData.username}</h1>
             </header>
             <div className="personalInfo">
-                <h5>name: {userData.firstName} {userData.lastName}</h5>
-                <h5>email: {userData.email}</h5>
-                <h5>password: {userData.password}</h5>
-                <button onClick={takeToEditPage}>edit</button>
+                <h5>name: {userData.firstName} {userData.lastName}</h5> <br />
+                <h5>email: {userData.email}</h5> <br />
+                <h5>gender: {userData.gender}</h5> <br />
+                <button className='editProfileButton' onClick={takeToEditPage}>edit</button> <br />
             </div>
             <div className='storiesContainer'>
-                <h3>recent photos</h3>
+                <h3 className='recentStoriesLabel'>recent stories</h3>
                 <UserStories />
             </div>
         </div>

@@ -52,17 +52,20 @@ const EditUser = props => {
             })
     }
     
-
         return (
             <>
             <form className='editUserForm' onSubmit={editUser}>
-                <input type='text' name='name' value={`${user.firstName} ${user.lastName}`} onChange={handleChanges} /> 
-                <input type='text' name='email' value={user.email} onChange={handleChanges} />
-                <input type='text' name='password' value={user.password} onChange={handleChanges} />
-                <button>Submit</button>
+                <h3>Edit Profile !</h3>
+                <div>Name</div>
+                <input className='editInput' type='text' name='name' value={`${user.firstName} ${user.lastName}`} onChange={handleChanges} /> 
+                <div>Email</div>
+                <input className='editInput' type='text' name='email' value={user.email} onChange={handleChanges} />
+                <div>Password</div>
+                <input className='editInput' type='text' name='password' value={user.password} onChange={handleChanges} />
+                <button className='submitButton'>Submit</button>
             </form>
             <div className='deleteProfile'>
-                <button onClick={deleteProfile}>Delete Profile</button>
+                <button className='deleteProfileButton' onClick={deleteProfile}>Delete Profile</button>
             </div>
             </>
         )
