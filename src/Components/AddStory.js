@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {axiosWithAuth} from '../api/axiosWithAuth';
 
 const AddStory = props => {
-    const [story, setStory ] = useState( { title:"", trip:"" , date:"" } );
+    const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '' } );
 
     const handleSubmit = story => {
         axiosWithAuth().post(`/api/stories`, story)
@@ -22,34 +22,54 @@ const AddStory = props => {
     return (
         <div className="storiesWrapper">
             <form onSubmit={ handleSubmit }>
-                <div className="storyTitle">
+                <div className="storyName">
                     <label 
-                    htmlFor="title">Title: </label>
+                    htmlFor="title">Story Name</label> <br />
                     <input
                      type="text" 
-                     id="title" 
-                     name="title" 
-                     value={ story.title} 
+                     id="storyName" 
+                     name="storyName" 
+                     value={ story.storyName} 
                      onChange={handleChange}/>
                 </div>
-                <div className="story">
+                <div className="storyCity">
                     <label 
-                    htmlFor="editStory">Tell your story: </label>
-                    <textarea 
+                    htmlFor="editStory">Story City</label> <br />
+                    <input
                     name="textarea" 
-                    id="editStory" 
-                    name="trip" 
-                    value={story.trip} 
+                    id="storyCity" 
+                    name="storyCity" 
+                    value={story.storyCity} 
+                    onChange={handleChange}/>
+                </div>
+                <div className="storyCountry">
+                    <label 
+                    htmlFor="date">Story Country</label> <br />
+                    <input 
+                    type="text" 
+                    id="date" 
+                    name="storyCountry" 
+                    value={story.storyCountry} 
                     onChange={handleChange}/>
                 </div>
                 <div className="storyDate">
                     <label 
-                    htmlFor="date">Date: </label>
-                    <input 
+                    htmlFor="date">Story Description</label> <br />
+                    <textarea 
                     type="text" 
                     id="date" 
-                    name="date" 
-                    value={story.date} 
+                    name="storyDesc" 
+                    value={story.storyDesc} 
+                    onChange={handleChange}/>
+                </div>
+                <div className="storyDate">
+                    <label 
+                    htmlFor="date">User ID</label> <br />
+                    <input 
+                    type="text" 
+                    id="userId" 
+                    name="user_id" 
+                    value={story.user_id} 
                     onChange={handleChange}/>
                 </div>
                 <button>Add Story</button>

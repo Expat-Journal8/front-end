@@ -48,6 +48,11 @@ body {
             border-bottom: 2px solid black;
             text-align: center;
         }
+
+        .deleteStoryButton {
+            border-radius: 50px;
+            background-color: red;
+        }
     }
     .photos{
         display:flex;
