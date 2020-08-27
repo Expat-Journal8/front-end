@@ -9,10 +9,8 @@ import Postcard from "./Components/Postcard";
 import Photo from "./Components/Photo";
 import Globe from "./Components/GlobeBanner";
 import { Switch, Route } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 function App() {
-  const current = useLocation().pathname;
   return (
     <div className="App">
        <Switch>

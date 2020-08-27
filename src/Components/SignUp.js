@@ -64,10 +64,11 @@ const SignUp = () =>{
         e.preventDefault();
         axios
         .post(postTo, userSUP)
-        .then( reply => { setReplyState(reply.data) } )
+        .then( reply => { setReplyState(reply.data); } )
         .catch( error => console.log(error) );
     };
 
+    useEffect( ()=>{ console.log(replyState) },[replyState] );
 
     return(
         <div className="joinWrap">
