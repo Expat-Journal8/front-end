@@ -63,6 +63,18 @@ export const fetchUserData = (params, setUserData) => dispatch => {
         })
 }
 
+export const fetchAllStories = (stories, setStories) => dispatch => {
+    dispatch({type: LOADING})
+    axiosWithAuth().get('/api/stories')
+        .then(response => {
+            setStories(response.data);
+            dispatch({type: FETCH_STORIES_SUCCESS, payload: response.data});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
 export const fetchUserStories = (params, setStories) => dispatch => {
     dispatch({type: LOADING});
     axiosWithAuth().get(`/api/users/${params}/stories`)

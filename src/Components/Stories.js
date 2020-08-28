@@ -1,20 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory, useParams, Link} from 'react-router-dom';
-import {axiosWithAuth} from '../api/axiosWithAuth';
-import {fetchUserStories} from '../actions/index'
+import {useHistory, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {fetchAllStories} from '../actions/index'
 
-const Stories = () => {
+const Stories = props => {
     const [stories, setStories] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
-        axiosWithAuth().get('/api/stories')
-            .then(response => {
-                setStories(response.data)
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        props.fetchAllStories(stories, setStories);
     }, [])
 
     console.log(stories);
@@ -46,4 +40,15 @@ const Stories = () => {
     )
 }
 
-export default Stories;
+const mapStateToProps = state => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {fetchAllStories})(Stories);

@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addStory} from '../actions/index';
 
 const AddStory = props => {
     const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '', storyPhoto: '' } );
-    const history = useHistory();
 
     const handleSubmit = e => {
         e.preventDefault();

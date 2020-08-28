@@ -1,20 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 //import {axiosWithAuth} from '../api/axiosWithAuth';
 //import axios from 'axios';
 import {connect} from 'react-redux';
-import {useParams, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {fetchUsers} from '../actions/index';
 
 //get request to /api/users -- will return array of users
 
 const ListUsers = props =>{
-    const [data, setData] = useState([{username:'hello world!'}]);
-    const params = useParams();
-    const path = `/Profile/${params.id}`
-
-    // function myFunction(id) {
-    //    alert(item.id);
-    // }
 
     useEffect(() => {
         props.fetchUsers();

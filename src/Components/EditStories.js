@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {useParams, useHistory} from 'react-router-dom';
 import {axiosWithAuth} from '../api/axiosWithAuth';
-import map from "./assets/world.png"
 
 
-const EditStories = () =>{
+const EditStories = props =>{
     const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '' } );
     const params = useParams();
     const history = useHistory();

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
-import {useHistory} from 'react-router-dom';
 import {registerUser} from '../actions/index';
 import {connect} from 'react-redux';
 
@@ -41,7 +39,6 @@ const SignUp = props =>{
     const [ buttonDisabled, setButtonDisabled ] = useState(true);
     //const [ replyState, setReplyState ] = useState([]);
     //const [postTo] = useState("https://reqres.in/api/users");
-    const history = useHistory();
 
     useEffect( ()=>{ joinSchema.isValid(userSUP).then( valid => {setButtonDisabled(!valid);} ) },[userSUP] );
 
