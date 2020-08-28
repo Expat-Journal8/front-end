@@ -13,12 +13,14 @@
     border-bottom-left-radius: 5ch;
     border-bottom-right-radius: 10ch;
     label{
+        
         font-size:1.5rem;
         font-family: "Permanent Marker";
         display:flex;
         flex-direction:column;
     }
     input{
+        
         border:1px $Yellow solid;
     }
     button{
