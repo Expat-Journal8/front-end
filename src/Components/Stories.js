@@ -42,6 +42,7 @@ const EditStories =()=>{
                            } )}
                        </div>)
     };
+    
     useEffect( ()=>{
         console.log("Edit this: ",editEntry)
         
