@@ -7,7 +7,7 @@ import Profile from './Components/Profile';
 import Stories from './Components/Stories';
 import Nav from "./Components/Nav";
 import ListUsers from './Components/ListUsers';
-import EditUser from '../src/Components/EditUser';
+import EditUser from './Components/EditUser';
 import EditStories from './Components/EditStories';
 import UserStories from './Components/UserStories';
 import Story from './Components/Story';
