@@ -4,7 +4,6 @@ import {useLocation} from 'react-router-dom';
 import {login, registerUser} from '../actions/index';
 import {connect} from 'react-redux';
 import * as yup from 'yup';
-import Nav from '../Components/Nav';
 
 const SignIn = props => {
     const location = useLocation();

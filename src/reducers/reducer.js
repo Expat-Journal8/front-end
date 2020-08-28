@@ -1,4 +1,4 @@
-import { SET_ERROR, SUCCESS, LOADING, LOGIN_SUCCESS, FETCH_USERS_SUCCESS, FETCH_USER_DATA_SUCCESS, FETCH_STORIES_SUCCESS } from "../actions/index";
+import { SET_ERROR, SUCCESS, LOADING, LOGIN_SUCCESS, FETCH_USERS_SUCCESS, FETCH_USER_DATA_SUCCESS, FETCH_STORIES_SUCCESS, EDIT_USER_SUCCESS } from "../actions/index";
 
 const initialState = { 
     users: [], 
@@ -50,6 +50,12 @@ export const reducer = (state = initialState, action) => {
                 ...state, 
                 stories: action.payload,
                 isLoading: false
+            }
+        case EDIT_USER_SUCCESS:
+            return {
+                ...state, 
+                isLoading: false,
+                user: action.payload
             }
         default:
             return state

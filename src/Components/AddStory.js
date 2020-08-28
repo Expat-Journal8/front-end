@@ -1,23 +1,20 @@
 import React, {useState} from 'react';
-import {axiosWithAuth} from '../api/axiosWithAuth';
+import {useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {addStory} from '../actions/index';
 
 const AddStory = props => {
-    const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '' } );
+    const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '', storyPhoto: '' } );
+    const history = useHistory();
 
-    const handleSubmit = story => {
-        axiosWithAuth().post(`/api/stories`, story)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.addStory(story);
     };
 
     const handleChange = e => {
         setStory({...story, [e.target.name]: e.target.value});
     };
-    
     
     return (
         <div className="storiesWrapper">
@@ -72,10 +69,31 @@ const AddStory = props => {
                     value={story.user_id} 
                     onChange={handleChange}/>
                 </div>
+                <div className="storyDate">
+                    <label 
+                    htmlFor="date">Photo URL</label> <br />
+                    <input 
+                    type="text" 
+                    id="userId" 
+                    name="storyPhoto" 
+                    value={story.storyPhoto} 
+                    onChange={handleChange}/>
+                </div>
                 <button>Add Story</button>
             </form>
         </div>
     )
 }
 
-export default AddStory;
+const mapStateToProps = (state) => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {addStory})(AddStory);

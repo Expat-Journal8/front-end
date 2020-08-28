@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory, useParams, Link} from 'react-router-dom';
 import {axiosWithAuth} from '../api/axiosWithAuth';
+import {fetchUserStories} from '../actions/index'
 
 const Stories = () => {
     const [stories, setStories] = useState([]);

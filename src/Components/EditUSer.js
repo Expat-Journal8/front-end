@@ -1,26 +1,17 @@
 // put request to /api/users/:id -- will allow users to update their profile data
 
 import React, {useState, useEffect} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {axiosWithAuth} from '../api/axiosWithAuth';
-import {editUserData, fetchUserData} from '../actions/index';
+import {editUserData, fetchUserData, deleteProfile} from '../actions/index';
 
 const EditUser = props => {
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState({name: '', email: '', password: ''})
     const params = useParams();
-    const history = useHistory();
     
-    const editUser = (data, e) => {
+    const editUser = e => {
         e.preventDefault();
-        axiosWithAuth().put(`api/users/${params.id}`, data)
-            .then(response => {
-                console.log(response);
-                //setUser({...user})
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        props.editUserData(params, user);
     }
 
     const handleChanges = e => {
@@ -29,27 +20,11 @@ const EditUser = props => {
     }
 
     useEffect(() => {
-        axiosWithAuth().get(`/api/users/${params.id}`)
-            .then(response => {
-                console.log(response);
-                setUser(response.data);
-                //dispatch({type: FETCH_USER_DATA_SUCCESS, payload: response.data})
-            })
-            .catch(error => {
-                console.log(error.message);
-            })
+        props.fetchUserData(params, setUser);
     }, [])
 
-    const deleteProfile = () => {
-        axiosWithAuth().delete(`/api/users/${params.id}`)
-            .then(response => {
-                console.log(response);
-                localStorage.removeItem('token');
-                history.push('/SignUp');
-            })
-            .catch(error => {
-                console.log(error);
-            })
+    const deleteOnClick = () => {
+        props.deleteProfile(params)
     }
     
         return (
@@ -65,7 +40,7 @@ const EditUser = props => {
                 <button className='submitButton'>Submit</button>
             </form>
             <div className='deleteProfile'>
-                <button className='deleteProfileButton' onClick={deleteProfile}>Delete Profile</button>
+                <button className='deleteProfileButton' onClick={deleteOnClick}>Delete Profile</button>
             </div>
             </>
         )
@@ -82,4 +57,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {editUserData, fetchUserData})(EditUser);
+export default connect(mapStateToProps, {editUserData, fetchUserData, deleteProfile})(EditUser);

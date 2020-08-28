@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {axiosWithAuth} from '../api/axiosWithAuth';
+import {fetchUserStories} from '../actions/index';
 
 const UserStories = props => {
     const [stories, setStories] = useState([]);
@@ -8,14 +10,15 @@ const UserStories = props => {
     const history = useHistory();
 
     useEffect(() => {
-        axiosWithAuth().get(`/api/users/${params.id}/stories`)
-            .then(response => {
-                console.log(response);
-                setStories(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        // axiosWithAuth().get(`/api/users/${params.id}/stories`)
+        //     .then(response => {
+        //         console.log(response);
+        //         setStories(response.data);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     })
+        props.fetchUserStories(params.id, setStories);
     }, [])
 
     const takeToStoryById = () => {
@@ -42,4 +45,15 @@ const UserStories = props => {
     )
 }
 
-export default UserStories;
+const mapStateToProps = (state) => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {fetchUserStories})(UserStories);

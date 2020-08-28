@@ -1,9 +1,6 @@
-import React, {useEffect} from 'react';
 import axios from 'axios';
 import {axiosWithAuth} from '../api/axiosWithAuth';
 import history from '../api/history';
-import {useParams} from 'react-router-dom';
-//import { reducer } from '../reducers/reducer';
 
 export const SET_ERROR = "SET_ERROR";
 export const SUCCESS = "SUCCESS";
@@ -12,24 +9,14 @@ export const LOADING = "LOADING";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 export const FETCH_USER_DATA_SUCCESS = "FETCH_USER_DATA_SUCCESS";
 export const FETCH_STORIES_SUCCESS = "FETCH_STORIES_SUCCESS";
+export const EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS";
+export const DELETE_PROFILE_SUCCESS = "DELETE_PROFILE_SUCCESS";
+export const ADD_STORY_SUCCESS = "ADD_STORY_SUCCESS";
 
-// export const getData = () => dispatch => {
-//     dispatch({ type: FETCH_USER_DATA });
-//     axios.get("url")
-//         .then(response => {
-//             dispatch({ type: UPDATE_USER_DATA, payload: response.data})
-//         })
-//         .catch(err => {
-//             dispatch({ type: SET_ERROR, payload: "Error: couldn't fetch data from api"})
-//     })
-// }
 
 export const registerUser = userData => dispatch => {
-    // no need -- dispatch({type: REGISTER_USER});
     axios.post("https://aa-expat.herokuapp.com/api/auth/register", userData)
         .then(response => {
-            // dispatch({type: REGISTER_USER_SUCCESS, payload: response.data})
-            // set user for successful login with auth token
             console.log(response);
             history.push('/SignIn')
             window.location.reload();
@@ -38,14 +25,11 @@ export const registerUser = userData => dispatch => {
 }
 
 export const login = credentials => dispatch => {
-//post both username and password
-    //e.preventDefault();
     dispatch({type: LOADING});
     axios.post('https://aa-expat.herokuapp.com/api/auth/login', credentials)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         console.log('token is', res);
-        // props.history.push('/Profile/:id') then get user id with useparams
         dispatch({type: LOGIN_SUCCESS, payload: res.data.user});
         history.push(`/Profile/${res.data.user.id}`)
         window.location.reload();
@@ -66,15 +50,12 @@ export const fetchUsers = () => dispatch => {
         });
 }
 
-//how and from where would I be able to grab ID?
-        //useParams
-
-export const fetchUserData = () => dispatch => {
+export const fetchUserData = (params, setUserData) => dispatch => {
     dispatch({type: LOADING})
-    const params = useParams();
     axiosWithAuth().get(`/api/users/${params.id}`)
         .then(response => {
             console.log(response);
+            setUserData(response.data);
             dispatch({type: FETCH_USER_DATA_SUCCESS, payload: response.data})
         })
         .catch(error => {
@@ -82,11 +63,12 @@ export const fetchUserData = () => dispatch => {
         })
 }
 
-export const fetchStories = () => dispatch => {
+export const fetchUserStories = (params, setStories) => dispatch => {
     dispatch({type: LOADING});
-    axiosWithAuth().get('/api/users/:id/stories')
+    axiosWithAuth().get(`/api/users/${params}/stories`)
         .then(response => {
             console.log(response);
+            setStories(response.data);
             dispatch({type: FETCH_STORIES_SUCCESS, payload: response.data})
         })
         .catch(error => {
@@ -94,17 +76,43 @@ export const fetchStories = () => dispatch => {
         })
 }
 
-export const editUserData = data => dispatch => {
-    const params = useParams();
-    axiosWithAuth().put(`api/users/${params.id}/`, data)
+export const editUserData = (params, user) => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().put(`api/users/${params.id}/`, user)
         .then(response => {
             console.log(response);
+            history.push(`/Profile/${params.id}`)
+            dispatch({type: EDIT_USER_SUCCESS, payload: response.data})
+            window.location.reload();
         })
         .catch(error => {
             console.log(error);
         })
 }
 
-//const updateUserProfile -- put request to /api/users/:id
+export const deleteProfile = (params) => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().delete(`/api/users/${params.id}`)
+        .then(response => {
+            console.log(response);
+            localStorage.removeItem('token');
+            history.push('/SignUp');
+            dispatch({type: DELETE_PROFILE_SUCCESS, payload: response.data})
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
 
-//const deleteUserProfile -- delete request to ___
+export const addStory = (story) => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().post(`/api/stories`, story)
+        .then(response => {
+            console.log(response);
+            history.push('/Stories');
+            dispatch({type: ADD_STORY_SUCCESS, payload: response.data});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
