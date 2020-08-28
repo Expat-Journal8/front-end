@@ -10,14 +10,6 @@ const UserStories = props => {
     const history = useHistory();
 
     useEffect(() => {
-        // axiosWithAuth().get(`/api/users/${params.id}/stories`)
-        //     .then(response => {
-        //         console.log(response);
-        //         setStories(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
         props.fetchUserStories(params.id, setStories);
     }, [])
 
@@ -39,7 +31,7 @@ const UserStories = props => {
     return (
         <div className='storyContainer' onClick={takeToStoryById}>
             <h3>{stories.storyName}</h3>
-            <a href={`${stories.photoLink}`}>{stories.photoLink}</a>
+            <img src={`${stories.photoLink}`}></img>
             <button className='deleteStoryButton' onClick={deleteStory}>-</button>
         </div>
     )
