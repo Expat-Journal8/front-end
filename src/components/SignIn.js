@@ -79,7 +79,7 @@ const SignIn = props => {
                     { err.username.length > 0 ? <span className="errd">{err.username}</span> : null }
                 </div>
                 <div className='password'>
-                    <input name='password' type='text' onChange={handleChange} placeholder='password' />
+                    <input name='password' type='password' onChange={handleChange} placeholder='password' />
                     {err.password.length > 0 ? <span className="errd">{err.password}</span> : null }
                 </div>
                 <button onClick={onSubmit} disabled={buttonDisabled}>{location.pathname === '/SignIn' ? 'Sign In!' : 'Sign Up!'}</button>
