@@ -37,7 +37,7 @@ const Story = (props) => {
         <div className='container'>
             <div className='storyContainer'>
                 <h4>{story.storyName}</h4> <br />
-                <a href={`${story.photoLink}`}>{story.photoLink}</a>
+                <img src={`${story.photoLink}`}></img>
             </div>
             <button className='editStoryButton' onClick={redirectToEditStoryPage}>Edit Story!</button>
             <button className='deleteStoryButton' onClick={deleteStory}>Delete Story!</button>
