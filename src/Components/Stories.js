@@ -1,30 +1,26 @@
 import React, {useState, useEffect} from "react";
+import EditJournal from "./EditJournal";
+import { FieldTextLine, FieldTextArea } from "./Field"; 
+//FieldText... will require a custom onChange handler to be provided here.
 import map from "./assets/world.png"
 
 
 const EditStories =()=>{
-    const  [story, setStory ] = useState( { title:"",trip:"" , date:"" } );
+    const [story, setStory ] = useState( { title:"",trip:"" , date:"" } );
     const [entries, setEntries] = useState( [{ title:"",trip:"" , date:"" }] );
     const [editEntry, setEditEntry] = useState({title:"",trip:"",date:""});
-    const [editing, setEditing]=useState(false);
-
 
     const handleChange = e => {
-        const tale = {
-            ...story,
-            [e.target.name]: 
-            e.target.value};
-            setStory(tale);
-        };
-
-    const handleSubmit = e => {
+        const tale = {...story, [e.target.name]: e.target.value}
+        setStory(tale);        
+    };
+    
+    const handleSubmit = e => {        
         e.preventDefault();
         setEntries([...entries, story]);
         setStory({title:"", trip:"", date:""});    
     };
     
-   
-
     useEffect( ()=>{
         console.log("Story added to entries array: ",entries)
     
@@ -40,15 +36,12 @@ const EditStories =()=>{
                                <p>{entry.trip}</p>
                                {index === 0 ?  null : <button onClick={() => {
                                    setEditEntry({entry,index});
-                                   setEditing(true);
                                 }
                                }>Edit</button>}
                                </div>)
                            } )}
                        </div>)
     };
-    
-    console.log(editing);
     useEffect( ()=>{
         console.log("Edit this: ",editEntry)
         
@@ -57,40 +50,32 @@ const EditStories =()=>{
     return(
         <div className="storiesWrapper">
             <form onSubmit={ handleSubmit }>
-                <div className="storyTitle">
-                    <label 
-                    htmlFor="title">Title: </label>
-                    <input
-                     type="text" 
-                     id="title" 
-                     name="title" 
-                     value={ story.title} 
-                     onChange={handleChange}/>
-                </div>
-                <div className="story">
-                    <label 
-                    htmlFor="editStory">Tell your story: </label>
-                    <textarea 
-                    name="textarea" 
-                    id="editStory" 
-                    name="trip" 
-                    value={story.trip} 
-                    onChange={handleChange}/>
-                </div>
-                <div className="storyDate">
-                    <label 
-                    htmlFor="date">Date: </label>
-                    <input 
-                    type="text" 
-                    id="date" 
-                    name="date" 
-                    value={story.date} 
-                    onChange={handleChange}/>
-                </div>
+
+                <FieldTextLine 
+                container="title_wrapper"  
+                subject="title" 
+                inputValue={story.title} 
+                change={handleChange}/>
+                
+                <FieldTextLine
+                container="title_wrapper"  
+                subject="date" 
+                value={story.date} 
+                change={handleChange}
+                />
+
+                <FieldTextArea 
+                subject="trip"
+                container="trip_wrapper"
+                value={story.trip}
+                change={handleChange}
+                />
+
                 <button>Add Story</button>
             </form>
 
             <Journal entries={entries}/>
+            <EditJournal entry={editEntry}/>
 
             </div>
         )
