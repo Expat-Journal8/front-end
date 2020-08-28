@@ -123,6 +123,7 @@ export const addStory = (story) => dispatch => {
             console.log(response);
             history.push('/Stories');
             dispatch({type: ADD_STORY_SUCCESS, payload: response.data});
+            window.location.reload();
         })
         .catch(error => {
             console.log(error);
