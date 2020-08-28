@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import { FieldTextLine, FieldTextArea } from "./Field";
+import * as yup from "yup";
+
 
 const Photo = () => {
+  const pictureSchema = yup.object().shape({
+    src:yup.string().required("please enter a valid URL"),
+    description:yup.string().min(10, "please enter a short description and photographer name.")
+  });
+
   const [picture, setPicture] = useState({ src: "", description: "" });
   const [pictures, setPictures] = useState([{src:"", description:""}]);
   const [editPic, setEditPic] = useState({src:"", description:""});
+
+
 
   const handleChange = (e) => {
     const photo = { ...picture, [e.target.name]: e.target.value };

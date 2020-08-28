@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const NavII=(props)=>{
 
     return(
-        <nav className="NavII">
+        <nav className="navigation">
             <img src={logo} alt=""/>
            <h1>Welcome [Username]</h1>
             <ul>

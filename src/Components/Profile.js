@@ -1,16 +1,12 @@
 import React from "react";
-
+import Globe from "./GlobeBanner"
 
 const Profile =()=>{
     
     return(
-        <div className="profileWrap">
-            name 
-            username 
-            email 
-            travelled 
-            recent postcard
-        </div>
+        
+            <Globe/>
+        
         )
 } 
 
