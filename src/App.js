@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from './api/PrivateRoute';
-import SignIn from './Components/SignIn';
-import SignUp from "./Components/SignUp";
-import Profile from './Components/Profile';
-import Stories from './Components/Stories';
-import Nav from "./Components/Nav";
-import ListUsers from './Components/ListUsers';
-import EditUser from './Components/EditUser';
-import EditStories from './Components/EditStories';
-import UserStories from './Components/UserStories';
-import Story from './Components/Story';
-import AddStory from './Components/AddStory';
+import SignIn from './components/SignIn';
+import SignUp from "./components/SignUp";
+import Profile from './components/Profile';
+import Stories from './components/Stories';
+import Nav from "./components/Nav";
+import ListUsers from './components/ListUsers';
+import EditUser from './components/EditUser';
+import EditStories from './components/EditStories';
+import UserStories from './components/UserStories';
+import Story from './components/Story';
+import AddStory from './components/AddStory';
 import './sass/Index.scss';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
         <Switch>
           <Route path='/SignIn' component={SignIn} />
           <Route path='/SignUp' component={SignUp} />
-          <Route exact path='/' />
+          <Route exact path='/' component={SignUp} />
           <PrivateRoute exact path='/UsersList' component={ListUsers} />
           <PrivateRoute exact path='/Profile/:id' component={Profile} />
           <PrivateRoute exact path='/Profile/:id/editProfile' component={EditUser} />

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {connect} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import {fetchUserData} from '../actions/index';
-import UserStories from '../Components/UserStories';
+import UserStories from '../components/UserStories';
 
 const Profile = props =>{
     const [userData, setUserData] = useState('testing');
