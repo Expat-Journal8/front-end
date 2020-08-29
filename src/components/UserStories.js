@@ -24,7 +24,7 @@ const UserStories = props => {
                 history.push('/Stories');
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             })
     }
 

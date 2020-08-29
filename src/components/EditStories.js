@@ -4,7 +4,7 @@ import {axiosWithAuth} from '../api/axiosWithAuth';
 
 
 const EditStories = props =>{
-    const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '' } );
+    const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '', storyPhoto: '' } );
     const params = useParams();
     const history = useHistory();
     // const [entries, setEntries] = useState( [{ title:"", trip:"" , date:"" }] );
@@ -27,37 +27,6 @@ const EditStories = props =>{
                 console.log(error);
             })
     };
-
-    // useEffect( ()=>{
-    //     console.log("Story added to entries array: ", entries)
-    
-    // },[entries] );
-
-    // const Journal = ({entries}) =>{
-    //     return (
-    //         <div className="journalWrap">
-    //             {entries.map((entry,index) => {
-    //                 return(
-    //                     <div key={index} className="wrapper">
-    //                         <h3>{entry.title}</h3><span><h4>{entry.date}</h4></span>
-    //                         <p>{entry.trip}</p>
-    //                         {index === 0 ?  null : <button onClick={() => {
-    //                             setEditEntry({entry,index});
-    //                             setEditing(true);
-    //                         }
-    //                         }>Edit</button>}
-    //                     </div>
-    //                 )
-    //             })}
-    //         </div>
-    //     )
-    // };
-    
-    // console.log(editing);
-    // useEffect( ()=>{
-    //     console.log("Edit this: ",editEntry)
-        
-    // },[editEntry] );
     
     return(
         <div className="storiesWrapper">
@@ -110,6 +79,16 @@ const EditStories = props =>{
                     id="userId" 
                     name="user_id" 
                     value={story.user_id} 
+                    onChange={handleChange}/>
+                </div>
+                <div className="storyDate">
+                    <label 
+                    htmlFor="storyPhoto">PhotoURL</label> <br />
+                    <input 
+                    type="text" 
+                    id="storyPhoto" 
+                    name="storyPhoto" 
+                    value={story.storyPhoto} 
                     onChange={handleChange}/>
                 </div>
                 <button>Finish editing!</button>

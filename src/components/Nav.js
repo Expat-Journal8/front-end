@@ -9,14 +9,18 @@ const Nav = props => {
         <>
             {location.pathname === '/SignUp' ? 
                 <div className="navigation">
-                    <img src={logo} alt="logo, a cozy tent next to a tree. "/>
+                    <Link to='https://expatjournal3.netlify.app/index.html'>
+                        <img src={logo} alt="logo, a cozy tent next to a tree. "/>
+                    </Link>
                     <Link to="/SignUp"><h3>JOIN</h3></Link>
                     <Link to="/SignIn"><h3>LOGIN</h3></Link>
                 </div>
             : 
             location.pathname === '/SignIn' ? 
                 <div className="navigation">
-                    <img src={logo} alt="logo, a cozy tent next to a tree. "/>
+<                   Link to='https://expatjournal3.netlify.app/index.html'>
+                        <img src={logo} alt="logo, a cozy tent next to a tree. "/>
+                    </Link>                    
                     <Link to="/SignUp"><h3>JOIN</h3></Link>
                     <Link to="/SignIn"><h3>LOGIN</h3></Link>
                 </div> 

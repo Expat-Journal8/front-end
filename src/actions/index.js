@@ -110,6 +110,7 @@ export const deleteProfile = (params) => dispatch => {
             localStorage.removeItem('token');
             history.push('/SignUp');
             dispatch({type: DELETE_PROFILE_SUCCESS, payload: response.data})
+            window.location.reload();
         })
         .catch(error => {
             console.log(error);
