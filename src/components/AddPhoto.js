@@ -11,7 +11,9 @@ const AddStory = props => {
     };
 
     const handleChange = e => {
+        e.persist();
         setPhoto({...photo, [e.target.name]: e.target.value});
+        console.log(photo)
     };
     
     return (

@@ -191,13 +191,14 @@ export const fetchPhotoById = (setPhoto, params) => dispatch => {
         })
 }
 
-export const addPhoto = () => dispatch => {
+export const addPhoto = (photo) => dispatch => {
     dispatch({type: LOADING});
-    axiosWithAuth().post(`/api/photos`)
+    axiosWithAuth().post(`/api/photos`, photo)
         .then(response => {
             console.log(response);
             dispatch({type: ADD_PHOTO_SUCCESS, payload: response.data});
             history.push(`/Photos`);
+            window.location.reload();
         })
         .catch(error => {
             console.log(error);
@@ -218,14 +219,15 @@ export const deletePhoto = params => dispatch => {
         })
 }
 
-export const editPhoto = (params, e) => dispatch => {
+export const editPhoto = (params, e, photo) => dispatch => {
     e.preventDefault();
     dispatch({type: LOADING});
-    axiosWithAuth().put(`/api/photos/${params.id}`)
+    axiosWithAuth().put(`/api/photos/${params.id}`, photo)
         .then(response => {
             console.log(response);
             dispatch({type: EDIT_PHOTO_SUCCESS, payload: response.data});
             history.push(`/Photo/${params.id}`);
+            window.location.reload();
         })
         .catch(error => {
             console.log(error);

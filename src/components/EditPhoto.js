@@ -13,7 +13,7 @@ const EditPhoto = props => {
     }, [])
 
     const handleSubmit = (e) => {
-        props.editPhoto(params, e);
+        props.editPhoto(params, e, photo);
     }
 
     const handleChange = e => {
