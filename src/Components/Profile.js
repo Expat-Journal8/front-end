@@ -2,12 +2,9 @@ import React from "react";
 import Globe from "./GlobeBanner"
 
 const Profile =()=>{
-    
     return(
-        
-            <Globe/>
-        
-        )
-} 
+             <Globe/>
+         )
+}; 
 
 export default Profile;

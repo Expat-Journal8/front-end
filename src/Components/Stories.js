@@ -4,7 +4,6 @@ import { FieldTextLine, FieldTextArea } from "./Field";
 //FieldText... will require a custom onChange handler to be provided here.
 import map from "./assets/world.png"
 
-
 const EditStories =()=>{
     const [story, setStory ] = useState( { title:"",trip:"" , date:"" } );
     const [entries, setEntries] = useState( [{ title:"",trip:"" , date:"" }] );

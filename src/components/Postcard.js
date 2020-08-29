@@ -1,7 +1,6 @@
 import React from "react";
 import { FieldTextLine, FieldTextArea } from "./Field";
 
-
 const Postcard =()=>{
     return(
         <div className="postcardWrapper">`

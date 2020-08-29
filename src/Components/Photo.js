@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FieldTextLine, FieldTextArea } from "./Field";
 import * as yup from "yup";
 
-
 const Photo = () => {
   const pictureSchema = yup.object().shape({
     src:yup.string().required("please enter a valid URL"),
@@ -12,8 +11,6 @@ const Photo = () => {
   const [picture, setPicture] = useState({ src: "", description: "" });
   const [pictures, setPictures] = useState([{src:"", description:""}]);
   const [editPic, setEditPic] = useState({src:"", description:""});
-
-
 
   const handleChange = (e) => {
     const photo = { ...picture, [e.target.name]: e.target.value };
@@ -26,7 +23,6 @@ const Photo = () => {
     setPictures([...pictures, picture]);
     setPicture({src:"", description:""});
   };
-
 
   const Gallery =(props)=>{
     return (
@@ -43,7 +39,6 @@ const Photo = () => {
                    } )}
                </div>)
 };
-
 
   return (
     <>

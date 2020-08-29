@@ -3,7 +3,6 @@ import logo from "./assets/logo.png"
 import {Link} from "react-router-dom";
 
 const NavII=(props)=>{
-
     return(
         <nav className="navigation">
             <img src={logo} alt=""/>
