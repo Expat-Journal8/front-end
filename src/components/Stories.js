@@ -24,14 +24,19 @@ const Stories = props => {
             </div>
             <div className='storiesContainer'>
                 {stories.map(story => 
+                <div className="storyCard">
                     <Link to={`/Story/${story.id}`}>
                         <div className='story'>
-                            {story.storyName} <br />
-                            {`${story.storyCity}, ${story.storyCountry}`} <br />
-                            {story.storyDesc} <br />
+                            <div className="cardHeader">
+                                <h2>{story.storyName}</h2><p>{`${story.storyCity}, ${story.storyCountry}`}</p>
                             {story.storyDate}
+                            </div>
+                            <p className="tale">
+                            {story.storyDesc} 
+                            </p>
                         </div>
                     </Link>
+                </div>
                     
                 )}
             </div>

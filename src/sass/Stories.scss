@@ -1,11 +1,87 @@
+
+
 .storiesWrapper{
-    width:35ch;
+    width:55ch;
+    padding: 3ch;
+    margin: 3rem auto;
     display: flex;
     flex-direction:column;
     justify-content: space-around;
-    align-items: flex-end;
-    .story{
+    align-items: center;
+    border: 1px solid #000;
+    padding-bottom: 8rem;
+    form{
+        background-image: url("../components/assets/world.png");
+        background-repeat: no-repeat;
+        background-size:cover;
         display:flex;
         flex-direction:column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top:1rem;
+        padding:2rem;
+        // background: $Blue;
+        width:99%;
+        border:1ch black solid;
+        label{
+            font-family:"Permanent Marker";
+        }
+        input{
+            background: #e8ce87;
+            border: none;
+            border: 1px dashed #c24c1e;
+        }
+        textarea{
+            background:#e8ce87;
+            border: 1px dashed #c24c1e;
+        }
+        button{
+            margin: 1ch;
+            border: 3px solid $Blue;
+            border-radius: 15px;
+            font-family: "Permanent Marker";
+            color:#0b6cad;
+            background:#a0904a;
+            &:hover{
+                background:#0b6cad;
+                color:#a0904a;
+            }
+        }
+    }
+}
+.storiesBodyContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    button{
+        font-family:"Permanent Marker";
+        font-size:1.1rem;
+        background:$Blue;
+        color:$Yellow;
+        border: 2px solid #000;
+        border-radius:50px;
+        height:3rem
+    }
+}
+.storiesContainer{
+    width:99%;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, 33ch);
+    grid-gap:2ch;  
+    
+    
+    .storyCard{
+        padding:1ch;
+        background: rgba(75, 104, 75,0.4);
+        a{
+            text-decoration:none;
+        }
+            .story{
+                border: none;
+                font-family: "Merriweather";
+                color:black;
+            }
     }
 }

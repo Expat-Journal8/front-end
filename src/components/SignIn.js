@@ -68,7 +68,7 @@ const SignIn = props => {
 
     return (
         <>
-            <div className='signInUpForm'>
+            <div className='signInUpForm joinWrap'>
                 {location.pathname === '/SignUp' ? 
                     <div className='signUpForm'><h1>Sign Up here!</h1></div> :
                     <div className='signInForm'><h1>Sign In here!</h1></div>
@@ -76,13 +76,13 @@ const SignIn = props => {
                 {/* input username and password here */}
                 <div className='userName'>
                     <input name='username' type='text' onChange={handleChange} placeholder='username' />
-                    { err.username.length > 0 ? <span className="errd">{err.username}</span> : null }
                 </div>
                 <div className='password'>
-                    <input name='password' type='text' onChange={handleChange} placeholder='password' />
-                    {err.password.length > 0 ? <span className="errd">{err.password}</span> : null }
+                    <input name='password' type='password' onChange={handleChange} placeholder='password' />
                 </div>
                 <button onClick={onSubmit} disabled={buttonDisabled}>{location.pathname === '/SignIn' ? 'Sign In!' : 'Sign Up!'}</button>
+                    { err.username.length > 0 ? <span className="errd">{err.username}</span> : null }
+                    {err.password.length > 0 ? <span className="errd">{err.password}</span> : null }
             </div>
         </>
     )
