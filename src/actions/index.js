@@ -12,6 +12,13 @@ export const FETCH_STORIES_SUCCESS = "FETCH_STORIES_SUCCESS";
 export const EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS";
 export const DELETE_PROFILE_SUCCESS = "DELETE_PROFILE_SUCCESS";
 export const ADD_STORY_SUCCESS = "ADD_STORY_SUCCESS";
+export const DELETE_STORY_SUCCESS = "DELETE_STORY_SUCCESS";
+export const FETCH_STORY_DATA_SUCCESS = "FETCH_STORY_DATA_SUCCESS";
+export const FETCH_PHOTOS_SUCCESS = "FETCH_PHOTOS_SUCCESS";
+export const FETCH_PHOTO_SUCCESS = "FETCH_PHOTO_SUCCESS";
+export const ADD_PHOTO_SUCCESS = "ADD_PHOTO_SUCCESS";
+export const DELETE_PHOTO_SUCCESS = "DELETE_PHOTO_SUCCESS";
+export const EDIT_PHOTO_SUCCESS = "EDIT_PHOTO_SUCCESS";
 
 
 export const registerUser = userData => dispatch => {
@@ -125,6 +132,100 @@ export const addStory = (story) => dispatch => {
             history.push('/Stories');
             dispatch({type: ADD_STORY_SUCCESS, payload: response.data});
             window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export const deleteStory = params => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().delete(`/api/stories/${params.id}`)
+        .then(response => {
+            console.log(response);
+            dispatch({type: DELETE_STORY_SUCCESS, payload: response.data});
+            history.push('/Stories');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export const fetchStoryData = (story, setStory, params) => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().get(`/api/stories/${params.id}`)
+        .then(response => {
+            console.log(response);
+            setStory(response.data)
+            dispatch({type: FETCH_STORY_DATA_SUCCESS, payload: response.data});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export const fetchPhotos = (setPhotos) => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().get(`/api/photos`)
+        .then(response => {
+            console.log(response);
+            setPhotos(response.data);
+            dispatch({type: FETCH_PHOTOS_SUCCESS, payload: response.data});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export const fetchPhotoById = (setPhoto, params) => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().get(`/api/photos/${params.id}`)
+        .then(response => {
+            console.log(response);
+            setPhoto(response.data);
+            dispatch({type: FETCH_PHOTO_SUCCESS, payload: response.data});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export const addPhoto = () => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().post(`/api/photos`)
+        .then(response => {
+            console.log(response);
+            dispatch({type: ADD_PHOTO_SUCCESS, payload: response.data});
+            history.push(`/Photos`);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export const deletePhoto = params => dispatch => {
+    dispatch({type: LOADING});
+    axiosWithAuth().delete(`/api/photos/${params.id}`)
+        .then(response => {
+            console.log(response);
+            dispatch({type: DELETE_PHOTO_SUCCESS, payload: response.data})
+            history.push('/Photos');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export const editPhoto = (params, e) => dispatch => {
+    e.preventDefault();
+    dispatch({type: LOADING});
+    axiosWithAuth().put(`/api/photos/${params.id}`)
+        .then(response => {
+            console.log(response);
+            dispatch({type: EDIT_PHOTO_SUCCESS, payload: response.data});
+            history.push(`/Photo/${params.id}`);
         })
         .catch(error => {
             console.log(error);

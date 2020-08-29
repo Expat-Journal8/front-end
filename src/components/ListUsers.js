@@ -1,11 +1,7 @@
 import React, {useEffect} from 'react';
-//import {axiosWithAuth} from '../api/axiosWithAuth';
-//import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchUsers} from '../actions/index';
-
-//get request to /api/users -- will return array of users
 
 const ListUsers = props =>{
 

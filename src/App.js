@@ -5,6 +5,10 @@ import SignIn from './components/SignIn';
 import SignUp from "./components/SignUp";
 import Profile from './components/Profile';
 import Stories from './components/Stories';
+import Photos from './components/Photos';
+import Photo from './components/Photo';
+import AddPhoto from './components/AddPhoto';
+import EditPhoto from './components/EditPhoto';
 import Nav from "./components/Nav";
 import ListUsers from './components/ListUsers';
 import EditUser from './components/EditUser';
@@ -31,6 +35,10 @@ function App() {
           <PrivateRoute exact path='/Story/:id/editStory' component={EditStories} />
           <PrivateRoute exact path='/Story/:id' component={Story} />
           <PrivateRoute exact path='/Stories/addStory' component={AddStory} />
+          <PrivateRoute exact path='/Photos' component={Photos} />
+          <PrivateRoute exact path='/Photo/:id' component={Photo} />
+          <PrivateRoute exact path='/Photos/addPhoto' component={AddPhoto} />
+          <PrivateRoute exact path='/Photo/:id/editPhoto' component={EditPhoto} />
         </Switch>
       </Router>
     </div>

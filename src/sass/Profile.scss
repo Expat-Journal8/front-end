@@ -43,10 +43,21 @@ body {
     .storiesContainer {
         border-bottom: 1px solid greenyellow;
         padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         .recentStoriesLabel {
             border-bottom: 2px solid black;
             text-align: center;
+        }
+
+        .recentStoryContainer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
         }
 
         .deleteStoryButton {
@@ -67,4 +78,8 @@ body {
         }
 
     }
+}
+
+img {
+    max-height: 400px;
 }

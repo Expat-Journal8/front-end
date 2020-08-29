@@ -1,20 +1,20 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useParams, useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {axiosWithAuth} from '../api/axiosWithAuth';
+import {fetchStoryData} from '../actions/index';
 
 
 const EditStories = props =>{
     const [story, setStory ] = useState( { storyName:"", storyCity:"", storyCountry: '', storyDesc: '', user_id: '', storyPhoto: '' } );
     const params = useParams();
     const history = useHistory();
-    // const [entries, setEntries] = useState( [{ title:"", trip:"" , date:"" }] );
-    // const [editEntry, setEditEntry] = useState({title:"", trip:"", date:""});
-    // const [editing, setEditing]=useState(false);
-
 
     const handleChange = e => {
             setStory({...story, [e.target.name]: e.target.value});
         };
+
+        console.log(story);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -27,13 +27,17 @@ const EditStories = props =>{
                 console.log(error);
             })
     };
+
+    useEffect(() => {
+        props.fetchStoryData(story, setStory, params)
+    }, [])
     
     return(
         <div className="storiesWrapper">
             <form onSubmit={ handleSubmit }>
-            <div className="storyName">
+                <div className="storyName">
                     <label 
-                    htmlFor="title">Story Name</label> <br />
+                    htmlFor="storyName">Story Name</label> <br />
                     <input
                      type="text" 
                      id="storyName" 
@@ -43,9 +47,9 @@ const EditStories = props =>{
                 </div>
                 <div className="storyCity">
                     <label 
-                    htmlFor="editStory">Story City</label> <br />
+                    htmlFor="storyCity">Story City</label> <br />
                     <input
-                    name="textarea" 
+                    type="text" 
                     id="storyCity" 
                     name="storyCity" 
                     value={story.storyCity} 
@@ -53,20 +57,20 @@ const EditStories = props =>{
                 </div>
                 <div className="storyCountry">
                     <label 
-                    htmlFor="date">Story Country</label> <br />
+                    htmlFor="storyCountry">Story Country</label> <br />
                     <input 
                     type="text" 
-                    id="date" 
+                    id="storyCountry" 
                     name="storyCountry" 
                     value={story.storyCountry} 
                     onChange={handleChange}/>
                 </div>
-                <div className="storyDate">
+                <div className="storyDesc">
                     <label 
                     htmlFor="date">Story Description</label> <br />
                     <textarea 
                     type="text" 
-                    id="date" 
+                    id="storyDesc" 
                     name="storyDesc" 
                     value={story.storyDesc} 
                     onChange={handleChange}/>
@@ -81,23 +85,31 @@ const EditStories = props =>{
                     value={story.user_id} 
                     onChange={handleChange}/>
                 </div>
-                <div className="storyDate">
+                <div className="photoLink">
                     <label 
-                    htmlFor="storyPhoto">PhotoURL</label> <br />
+                    htmlFor="photoLink">PhotoURL</label> <br />
                     <input 
                     type="text" 
-                    id="storyPhoto" 
-                    name="storyPhoto" 
-                    value={story.storyPhoto} 
+                    id="photoLink" 
+                    name="photoLink" 
+                    value={story.photoLink} 
                     onChange={handleChange}/>
                 </div>
                 <button>Finish editing!</button>
             </form>
-
-            {/* <Journal entries={entries}/> */}
-
-            </div>
+        </div>
         )
 };
 
-export default EditStories;
+const mapStateToProps = (state) => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {fetchStoryData})(EditStories);

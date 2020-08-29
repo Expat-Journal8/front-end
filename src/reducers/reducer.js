@@ -1,4 +1,4 @@
-import { SET_ERROR, SUCCESS, LOADING, LOGIN_SUCCESS, FETCH_USERS_SUCCESS, FETCH_USER_DATA_SUCCESS, FETCH_STORIES_SUCCESS, EDIT_USER_SUCCESS } from "../actions/index";
+import { SET_ERROR, SUCCESS, LOADING, LOGIN_SUCCESS, FETCH_USERS_SUCCESS, FETCH_USER_DATA_SUCCESS, FETCH_STORIES_SUCCESS, EDIT_USER_SUCCESS, FETCH_STORY_DATA_SUCCESS, ADD_STORY_SUCCESS, DELETE_STORY_SUCCESS, FETCH_PHOTOS_SUCCESS, ADD_PHOTO_SUCCESS, DELETE_PHOTO_SUCCESS, EDIT_PHOTO_SUCCESS } from "../actions/index";
 
 const initialState = { 
     users: [], 
@@ -56,6 +56,48 @@ export const reducer = (state = initialState, action) => {
                 ...state, 
                 isLoading: false,
                 user: action.payload
+            }
+        case FETCH_STORY_DATA_SUCCESS:
+            return {
+                ...state, 
+                isLoading: false,
+                story: action.payload
+            }
+        case ADD_STORY_SUCCESS:
+            return {
+                ...state, 
+                isLoading: false,
+                story: action.payload
+            }
+        case DELETE_STORY_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                deletedStory: action.payload
+            }
+        case FETCH_PHOTOS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                photos: action.payload
+            }
+        case ADD_PHOTO_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                newPhoto: action.payload
+            }
+        case DELETE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                deletedPhoto: action.payload
+            }
+        case EDIT_PHOTO_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                photo: action.payload
             }
         default:
             return state

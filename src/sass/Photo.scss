@@ -1,0 +1,45 @@
+.photoContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    margin: 100px auto 0px;
+
+    .IDandDateContainer {
+        display: flex;
+        justify-content: space-around;
+
+        .id {
+            margin-left: -380px;
+        }
+
+        .date {
+            margin-right: -670px;
+        }
+    }
+}
+
+.addPhotoForm {
+    text-align: center;
+    margin: 100px auto 0px;
+}
+
+.photoBodyContainer {
+    text-align: center;
+
+    .editPhotoButton {
+        margin: 3% auto;
+        border: none;
+    }
+    .editPhotoButton:hover {
+        background-color: yellowgreen;
+    }
+
+    .deletePhotoButton {
+        border: none;
+    }
+    .deletePhotoButton:hover {
+        background-color: maroon;
+    }
+}

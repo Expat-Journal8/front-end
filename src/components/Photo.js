@@ -1,7 +1,50 @@
-import React from 'react';
-import axios from 'axios';
-import {axiosWithAuth} from '../api/axiosWithAuth';
+import React, {useState, useEffect} from 'react';
+import {useHistory, useParams, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import { fetchPhotoById, deletePhoto } from '../actions/index';
 
-//get request to /api/users/:id/stories -- will return posts created by id specific users
+const Photo = props => {
+    const [photo, setPhoto] = useState({});
+    const history = useHistory();
+    const params = useParams();
 
-//on click on the photo, enlarge the pic with a description
+    useEffect(() => {
+        props.fetchPhotoById(setPhoto, params);
+    }, [])
+
+    const deletePhoto = () => {
+      props.deletePhoto(params);
+    }
+
+    const takeToEditPhotoPage = () => {
+      history.push(`/Photo/${params.id}/editPhoto`)
+    }
+
+    return (
+        <div className='photoBodyContainer'>
+            <div className='photoContainer'>
+              <div className='IDandDateContainer'>
+                <span className='id'>{photo.id}</span> <span className='date'>{photo.photoDate}</span> <br />
+              </div>
+                <img src={photo.photoLink} /> <br />
+                {photo.photoDesc}
+            </div>
+            <button className='editPhotoButton' onClick={takeToEditPhotoPage}>Edit</button>
+            <button className='deletePhotoButton' onClick={deletePhoto}>Delete</button>
+        </div>
+        
+    )
+}
+
+const mapStateToProps = (state) => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {fetchPhotoById, deletePhoto})(Photo);

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {axiosWithAuth} from '../api/axiosWithAuth';
+import {deleteStory} from '../actions/index';
 
 const Story = (props) => {
     const [story, setStory] = useState([]);
@@ -23,14 +25,7 @@ const Story = (props) => {
     }
 
     const deleteStory = () => {
-        axiosWithAuth().delete(`/api/stories/${params.id}`)
-            .then(response => {
-                console.log(response);
-                history.push('/Stories');
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        props.deleteStory(params);
     }
     
     return (
@@ -45,4 +40,15 @@ const Story = (props) => {
     )
 }
 
-export default Story;
+const mapStateToProps = (state) => {
+    return {
+        users: [], 
+        user: {}, 
+        registerSuccessMessage: '',
+        user_stories: {}, 
+        isLoading: false, 
+        error: null 
+    }
+}
+
+export default connect(mapStateToProps, {deleteStory})(Story);

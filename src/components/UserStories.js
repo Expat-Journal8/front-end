@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {axiosWithAuth} from '../api/axiosWithAuth';
 import {fetchUserStories} from '../actions/index';
 
 const UserStories = props => {
@@ -17,22 +16,15 @@ const UserStories = props => {
         history.push(`/Story/${params.id}`)
     }
 
-    const deleteStory = () => {
-        axiosWithAuth().delete(`/api/stories/${params.id}`)
-            .then(response => {
-                console.log(response);
-                history.push('/Stories');
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    // const deleteStory = () => {
+    //     props.deleteStory(params);
+    // }
 
     return (
-        <div className='storyContainer' onClick={takeToStoryById}>
+        <div className='recentStoryContainer' onClick={takeToStoryById}>
             <h3>{stories.storyName}</h3>
             <img src={`${stories.photoLink}`}></img>
-            <button className='deleteStoryButton' onClick={deleteStory}>-</button>
+            {/* <button className='deleteStoryButton' onClick={deleteStory}>-</button> */}
         </div>
     )
 }

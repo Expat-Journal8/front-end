@@ -1,0 +1,41 @@
+.photosBodyContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    button{
+        font-family:"Permanent Marker";
+        font-size:1.1rem;
+        background:$Blue;
+        color:$Yellow;
+        border: 2px solid #000;
+        border-radius:50px;
+        height:3rem;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+}
+.photosContainer{
+    width:99%;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, 33ch);
+    grid-gap:2ch;  
+    
+    
+    .photoCard{
+        padding:1ch;
+        background: rgba(75, 104, 75,0.4);
+        border: none;
+        font-family: "Merriweather";
+        color:black;
+        
+        a{
+            text-decoration:none;
+        }
+
+        img {
+            width: 245px;
+        }
+    }
+}
