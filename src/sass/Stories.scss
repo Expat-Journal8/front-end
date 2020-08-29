@@ -1,11 +1,52 @@
+// @import "../components/assets/world.png";
+
 .storiesWrapper{
-    width:35ch;
+    width:55ch;
+    padding: 3ch;
+    margin: 3rem auto;
     display: flex;
     flex-direction:column;
     justify-content: space-around;
-    align-items: flex-end;
-    .story{
+    align-items: center;
+    border: 1px solid #000;
+    padding-bottom: 8rem;
+    form{
+        background-image: url("../components/assets/world.png");
+        background-repeat: no-repeat;
+        background-size:cover;
         display:flex;
         flex-direction:column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top:1rem;
+        padding:2rem;
+        // background: $Blue;
+        width:99%;
+        border:1ch black solid;
+        label{
+            font-family:"Permanent Marker";
+        }
+        input{
+            background: #e8ce87;
+            border: none;
+            border: 1px dashed #c24c1e;
+        }
+        textarea{
+            background:#e8ce87;
+            border: 1px dashed #c24c1e;
+        }
+        button{
+            margin: 1ch;
+            border: 3px solid $Blue;
+            border-radius: 15px;
+            font-family: "Permanent Marker";
+            color:#0b6cad;
+            background:#a0904a;
+            &:hover{
+                background:#0b6cad;
+                color:#a0904a;
+            }
+        }
+    
     }
 }
