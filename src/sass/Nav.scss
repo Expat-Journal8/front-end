@@ -5,6 +5,11 @@
     align-items: center;
     background:$Background;
     color: $Black;
+    ul, ol{
+        li{
+            list-style: none;
+        }
+    }
     a{
         text-decoration:none;
     }
