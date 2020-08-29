@@ -29,7 +29,7 @@ const Nav = props => {
                 </div> 
                 :
                 <nav className="NavII">
-                    <img src={logo} alt=""/>
+                    <a href='https://expatjournal3.netlify.app/'><img src={logo} alt=""/></a>
                     <ul>
                         <li>
                         <Link to="/Stories"><button>Stories</button> </Link>
